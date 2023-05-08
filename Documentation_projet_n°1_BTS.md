@@ -7,7 +7,7 @@
     ou
     exe ping <ip to ping>
 
-### voir dernières connections ?
+### table ARP
     get system arp
 
 ### voir les IPs des ports du firewall

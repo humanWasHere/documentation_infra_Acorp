@@ -31,17 +31,17 @@
     end
     (vérifier l'accès à internet par ping)
 
-<!--### configuration du dns pour l'accès à internet
+### configuration du dns <!--pour l'accès à internet-->
     config system dns
     set primary 208.91.112.53
     set secondary 208.91.112.52
     end-->
 
-### essai bypass licence vidéo youtube https://www.youtube.com/watch?v=1CS5tD7ljdk
+<!--### bypass licence vidéo youtube https://www.youtube.com/watch?v=1CS5tD7ljdk
     config system ntp
     set ntpsync disable
     set type custom
     end
-    exe reboot
+    exe reboot-->
 
 ## II) Configuration et commandes du Routeur MikroTik RB3011UiAS

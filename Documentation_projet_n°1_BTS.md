@@ -7,7 +7,7 @@
 ou
     exe ping <IP to ping>
 
-### voir dernières connections ?
+### table ARP
     get system arp
 
 ### voir les IPs des ports du firewall
@@ -31,18 +31,18 @@ ou
     end
 (vérifier l'accès à internet par ping)
 
-<!--### configuration du dns pour l'accès à internet
+### configuration du dns <!--pour l'accès à internet-->
     config system dns
     set primary 208.91.112.53
     set secondary 208.91.112.52
     end-->
 
-### essai bypass licence vidéo youtube https://www.youtube.com/watch?v=1CS5tD7ljdk
+<!--### bypass licence vidéo youtube https://www.youtube.com/watch?v=1CS5tD7ljdk
     config system ntp
     set ntpsync disable
     set type custom
     end
-    exe reboot
+    exe reboot-->
 
 ### commandes générales
     end
@@ -50,8 +50,7 @@ ou
 
 ## II) Configuration et commandes du Routeur MikroTik RB3011UiAS
 
-
-## reset MikroTik config
+### reset MikroTik config
     system reset-configuration no-defaults=yes skip-backup=yes
 ### ajout adresse IP au Mikro
     ip address add address=192.168.40.3/24 interface=ether1

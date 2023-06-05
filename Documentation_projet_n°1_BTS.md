@@ -4,12 +4,12 @@
 Don't forget to have a licence in FortiCloud
 
 ressources :
-https://www.youtube.com/watch?v=nqJ7-4tB7jM
+https://www.youtube.com/watch?v=nqJ7-4tB7jM   
 https://www.youtube.com/watch?v=QIQ4HHFtAMw
 
 ### Exécuter un ping
     execute ping <IP to ping>
-ou
+ou   
     exe ping <IP to ping>
 
 ### table ARP
@@ -36,7 +36,8 @@ ou
     end
 (vérifier l'accès à internet par ping)
 
-### configuration du dns <!--pour l'accès à internet-->
+### configuration du dns
+<!--pour l'accès à internet
     config system dns
     set primary 208.91.112.53
     set secondary 208.91.112.52
@@ -59,14 +60,14 @@ penser aux adresses configurées en subnet (pas en range)
 ### rename FortiGate
     config system global
     set hostname GSN3-FortiGate
-(renommé ici "GNS3-FortiGate)
+(renommé ici "GNS3-FortiGate)   
     end
 
 ### commandes générales
     exe reboot
-(reboot le forti)
+(reboot le forti)   
     next
-(passe à la suite de la conf)
+(passe à la suite de la conf)   
     end
 (quitter une instance de config)
 
@@ -82,7 +83,7 @@ penser aux adresses configurées en subnet (pas en range)
 
 ### Configuration du routing NAT au Mikro
     ip add address=192.168.40.5/29 interface=ether1
-(on passe par ether1 pour reach le network 192.168.40.0)
+(on passe par ether1 pour reach le network 192.168.40.0)   
     ip route add gateway=192.168.41.5
 (ajout de gateway)
 <!--    ip dns set servers=8.8.8.8
@@ -104,15 +105,15 @@ penser aux adresses configurées en subnet (pas en range)
 
 ### commandes générales
     ip address print
-(on vérifie la création)
+(on vérifie la création)   
     ping 192.168.50.1
-(on vérifie également que l'interface ping)
+(on vérifie également que l'interface ping)   
     /interface
 (rentre )
 
 ## II) Configuration et commandes des VPCs sur GNS3
 ressources :
-https://www.sysnettechsolutions.com/en/configure-vpcs-gns3/
+https://www.sysnettechsolutions.com/en/configure-vpcs-gns3/   
 https://docs.gns3.com/docs/emulators/vpcs/
 
 ### Configuration des IPs
@@ -123,12 +124,12 @@ https://docs.gns3.com/docs/emulators/vpcs/
 
 ### commandes générales
     show ip
-(affiche les configs IP)
+(affiche les configs IP)   
     clear ip
-(removes IP configs)
+(removes IP configs)   
     save
-(to save config)
+(to save config)   
     ping
-(classique)
+(classique)   
     trace
 (tracert)

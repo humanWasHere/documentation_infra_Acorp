@@ -1,7 +1,7 @@
 # Documentation projet n°1 BTS Romain CHANELIERE 2023
 
 ## I) Configuration et commandes du Pare-feu (firewall) FortiGate 61F
-Ne pas oublier la licence sur FortiCloud
+Ne pas oublier la licence sur FortiCloud.
 
 Ressources :
 https://www.youtube.com/watch?v=nqJ7-4tB7jM   
@@ -9,16 +9,17 @@ https://www.youtube.com/watch?v=QIQ4HHFtAMw
 
 ### Exécuter un ping
     execute ping <IP à ping>
-ou   
+ou
+
     exe ping <IP à ping>
 
-### table ARP
+### Table ARP
     get system arp
 
-### voir les IPs des ports du firewall
+### Voir les IPs des ports du firewall
     get system interface
 
-### définir une IP sur le port X (ici au port 1)
+### Définition d'une IP sur le port X (ici au port 1)
     config system interface
     edit port1
     set mode static
@@ -26,7 +27,7 @@ ou
     set ip 192.168.40.5 255.255.255.248
     end
 (vérifier le ping)
-### configuration du routage pour accéder à internet sur le Forti
+### Configuration du routage pour accéder à internet sur le Forti
     config router static
     edit (savoir si il y en a un de configuré)
     edit 1
@@ -36,8 +37,8 @@ ou
     end
 (vérifier l'accès à internet par ping)
 
-### configuration du dns
-<!--pour l'accès à internet
+<!--### Configuration du dns
+pour l'accès à internet
     config system dns
     set primary 208.91.112.53
     set secondary 208.91.112.52
@@ -65,10 +66,15 @@ NAT table FortiGate :
 
 ### Commandes générales
 Reboot le FortiGate :
+
     exe reboot
+
 Passer à la suite de la configuration :
+
     next
+
 Quitter une instance de configuration :
+
     end
 
 ## II) Configuration et commandes du Routeur MikroTik RB3011UiAS
@@ -77,20 +83,27 @@ Quitter une instance de configuration :
     system reset-configuration no-defaults=yes skip-backup=yes
 ### Ajout d'une adresse IP
 On récup la connection sur ether1 :
+
     ip address add address=192.168.40.3/24 interface=ether1
 <!--    ip address add address=10.22.0.1/23 interface=ether2
 (on config le début du LAN sur ether2)-->
 
 ### Retirer une address IP
 Enlever une IP configurée par port / dans le routing :
+
     ip address remove [find address 192.168.41.3/30 interface=ether1]
 
 ### Configuration du routing NAT
 On passe par ether1 pour accéder au réseau 192.168.40.0 :
+
     ip add address=192.168.40.5/29 interface=ether1
+
 Ajout d'une passerelle :
+
     ip route add gateway=192.168.41.5
+
 Ajout d'un DNS :
+
     ip dns set servers=8.8.8.8
 
 ### Fermer un port du MikroTik
@@ -101,16 +114,24 @@ Ajout d'un DNS :
 
 ### Entrer et quitter le safe mode
 Ouverture ou fermeture du safe mode :
+
     Ctrl + X
 
 ### Commandes générales
-On vérifie la création
+Afficher les addresses IP configurées :
+
     ip address print
-On vérifie également que l'interface ping
+
+On vérifie également que l'interface ping :
+
     ping 192.168.50.1
+
 Rentre dans la configuration d'interface sur plusieurs ligne
+
     /interface
+
 Revient à la configuration générique
+
     /
 
 ## II) Configuration et commandes des VPCs sur GNS3
@@ -119,7 +140,8 @@ https://www.sysnettechsolutions.com/en/configure-vpcs-gns3/
 https://docs.gns3.com/docs/emulators/vpcs/
 
 ### Configuration des IPs
-On défini l'IP du PC puis sa passerelle
+On défini l'IP du PC puis sa passerelle :
+
     ip 192.168.42.10/24 192.168.42.5
 
 <!--### Configuration IP par DHCP
@@ -130,12 +152,21 @@ On défini l'IP du PC puis sa passerelle
 
 ### Commandes générales
 Affiche les configurations IP :
+
     show ip
+
 Retire les IPs configurées :
+
     clear ip
+
 Sauvegarde la configuration :
+
     save
+
 Éxécuter un ping :
+
     ping
+
 Éxécuter un trace route :
+
     trace

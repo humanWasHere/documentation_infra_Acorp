@@ -7,12 +7,6 @@ Ressources :
 https://www.youtube.com/watch?v=nqJ7-4tB7jM   
 https://www.youtube.com/watch?v=QIQ4HHFtAMw
 
-### Exécuter un ping
-    execute ping <IP à ping>
-ou
-
-    exe ping <IP à ping>
-
 ### Table ARP
     get system arp
 
@@ -69,13 +63,22 @@ Reboot le FortiGate :
 
     exe reboot
 
-Passer à la suite de la configuration :
+Passer à la suite de la configuration (correspond à un ../) :
 
     next
 
-Quitter une instance de configuration :
+Quitter une instance de configuration (correspond à un /) :
 
     end
+
+Exécuter un ping
+
+    exe ping <IP>
+
+
+Exécuter un traceroute
+
+    exe traceroute <IP>
 
 ## II) Configuration et commandes du Routeur MikroTik RB3011UiAS
 
@@ -92,6 +95,10 @@ On récup la connection sur ether1 :
 Enlever une IP configurée par port / dans le routing :
 
     ip address remove [find address 192.168.41.3/30 interface=ether1]
+
+ou 
+
+    ip address remove 2
 
 ### Configuration du routing NAT
 On passe par ether1 pour accéder au réseau 192.168.40.0 :
@@ -122,6 +129,14 @@ Afficher les addresses IP configurées :
 
     ip address print
 
+Afficher les routes :
+
+    ip route print
+
+Afficher les ports :
+
+    interface print
+
 On vérifie également que l'interface ping :
 
     ping 192.168.50.1
@@ -134,7 +149,73 @@ Revient à la configuration générique
 
     /
 
-## II) Configuration et commandes des VPCs sur GNS3
+<!--
+## Configuration DHCP relay MikroTik
+
+### Configuration DHCP
+Configure pool : 
+
+    ip pool add name=DHCPgreLANpool ranges=10.22.0.10-10.22.1.254
+
+Create DHCP server :
+
+    ip dhcp-server add interface=ether3 relay=10.22.0.1 \ dns-server=192.168.50.1
+
+Configure DHCP relay :
+
+    ip dhcp-relay add name=DHCPrelay interface=ether2 \ dhcp-server=192.168.50.1 local-address=10.22.0.1 disabled=no
+
+## III) Configuration DNS (Cisco)
+
+### Configuration de l'interface fa0/0
+    conf t
+    interface fastEthernet 0/0
+    ip address 192.168.50.1 255.255.255.0
+    no shutdown
+    end
+
+### Afficher les interfaces configurées
+    show ip int br
+
+### Configuration DHCP et DNS
+    conf t
+    ip dhcp pool DHCPgreLANpool
+    network 10.22.0.1 255.255.254.0
+    default-router 192.168.50.1
+    dns-server 192.168.50.1
+    exit
+
+    ip dhcp excluded-address 10.22.0.1 10.22.0.9
+    end
+
+
+### Voir binding et pool (interfaces machines avec DHCP)
+    show ip dhcp binding
+    show ip dhcp pool
+
+### Commandes générales
+Passer à la suite de la configuration (correspond à un ../) :
+
+    exit
+
+Quitter une instance de configuration (correspond à un /) :
+
+    end
+-->
+
+<!--
+## III) Configuration DHCP MikroTik
+
+### Confiugration du DHCP
+    ip dhcp-server
+    ip pool add ranges=10.22.0.10-10.22.0.60 name=range1
+    ip pool print
+
+    ip dhcp-server/add address-pool=range1 lease-time=500 interface=ether3
+    ip dhcp-server/network/add address=10.22.0.0/23 gateway=10.22.0.1 dns-server=8.8.8.8
+-->
+
+## IV) Configuration et commandes des VPCs sur GNS3
 Ressources :
 https://www.sysnettechsolutions.com/en/configure-vpcs-gns3/   
 https://docs.gns3.com/docs/emulators/vpcs/
